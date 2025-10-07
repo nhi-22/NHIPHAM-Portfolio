@@ -11,6 +11,66 @@
     <script>
         new wow().init()
     </script>
+    <style>
+/* ===== Hiệu ứng quay tròn nhẹ ===== */
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+</style>
+<style>
+  .scroll-stack {
+  position: relative;
+  height: 300vh; /* tạo không gian scroll */
+}
+
+.stack-card {
+  position: sticky;
+  top: 10vh;
+  opacity: 0.9;
+  transform: scale(0.9);
+  transition: all 0.6s ease;
+  margin: 0 auto;
+  width: 90%;
+  z-index: 1;
+}
+
+/* Khi scroll tới, card dần nổi lên */
+.stack-card:nth-child(1) {
+  z-index: 3;
+  animation: stack1 3s ease-out forwards;
+}
+.stack-card:nth-child(2) {
+  z-index: 2;
+  animation: stack2 3s ease-out forwards;
+}
+.stack-card:nth-child(3) {
+  z-index: 1;
+  animation: stack3 3s ease-out forwards;
+}
+
+/* Hiệu ứng fade và move khi rời khỏi vùng hiển thị */
+@keyframes stack1 {
+  0% { opacity: 0; transform: translateY(100px) scale(0.9); }
+  25% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-200px) scale(0.9); }
+}
+@keyframes stack2 {
+  25% { opacity: 0; transform: translateY(100px) scale(0.9); }
+  50% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-200px) scale(0.9); }
+}
+@keyframes stack3 {
+  50% { opacity: 0; transform: translateY(100px) scale(0.9); }
+  75% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-200px) scale(0.9); }
+}
+</style>
+
 </head>
 
 <body class="bg-black">
@@ -112,61 +172,101 @@
 </body>
 
 <body class="container mx-auto flex flex-col gap-40">
-  <div class="container mx-auto flex flex-col items-center gap-6 p-10 mt-12">
-    <div class="container mx-auto flex flex-row items-center justify-between animate__animated animate__fadeInUp animate__delay-1s mb-32">
-      <div class="w-1/3 text-gray-500 text-H9 font-medium">A COLLECTION OF VISUAL WORKS</div>
-      <div class="w-1/3 relative group p-20 z-40">
-        <img src="images/me home.png" 
-       class="absolute inset-0 object-cover transition-opacity duration-500 group-hover:opacity-0" 
-       alt="Image 1">
+  <div class="container mx-auto flex flex-col items-center gap-6 p-10">
+  <!-- Hàng trên cùng -->
+  <div class="container mx-auto flex flex-row items-center justify-between animate__animated animate__fadeInUp animate__delay-1s mb-32">
+    <div class="w-1/3 text-lime-700 text-H10 font-medium">A COLLECTION OF VISUAL WORKS</div>
 
-        <img src="images/me.png" 
-       class="absolute inset-0 object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100" 
-       alt="Image 2">
-      </div>
-      <div class="w-1/3 text-gray-500 flex flex-row justify-end text-H9 font-medium">WEB PORTFOLIO 2025</div>
+    <!-- Ảnh hover -->
+    <div class="w-1/3 relative group p-20 z-40">
+      <img src="images/me.png"
+        class="absolute inset-0 object-cover transition-opacity duration-500 group-hover:opacity-0"
+        alt="Image 1" />
+      <img src="images/me home.png"
+        class="absolute inset-0 object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        alt="Image 2" />
     </div>
-    <div class="text-H2 text-lime-600 font-bold animate__animated animate__fadeInUp animate__delay-2s -z-10">I’M NHI-DESIGNER  ___________    FROM VIET NAM</div>
-    <div class="container mx-auto flex flex-row justify-between items-end py-5">
-      <div class="flex flex-col items-start gap-4 animate__animated animate__fadeInUp animate__delay-3s">
-        <div class="text-H6 text-white font-medium">What I Do</div>
-        <div class="flex flex-col gap-2 ">
-          <div class="text-H7 text-gray-500 hover:text-slate-200">UIUX DESIGNER</div>
-          <div class="text-H7 text-gray-500 hover:text-slate-200">GRAPHIC DESIGNER</div>
-          <div class="text-H7 text-gray-500 hover:text-slate-200">PHOTOGRAPER</div>
-          <div class="text-H7 text-gray-500 hover:text-slate-200">ILLUSTRATION</div>
-        </div>
-      </div>
-      <div class="animate-pulse flex flex-col items-center">
-        <div class="text-H8 text-gray-400">Scroll to explore</div>
-        <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-         <path d="M34.2101 23.6836L24.9996 31.5783L15.7891 23.6836" stroke="#F5FFFA" stroke-width="1.97368" stroke-linecap="round" stroke-linejoin="round"/>
-         <path d="M34.2101 18.4219L24.9996 26.3166L15.7891 18.4219" stroke="#F5FFFA" stroke-width="1.97368" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
 
-      </div>
-      <div class="flex flex-col items-end gap-4 animate__animated animate__fadeInUp animate__delay-3s">
-        <div class="text-H6 text-white font-medium">Expertise</div>
-        <div class="flex flex-col items-end gap-2">
-          <div class="text-H7 text-gray-500 hover:text-slate-200">WEB DESIGN</div>
-          <div class="text-H7 text-gray-500 hover:text-slate-200">APP DESIGN</div>
-          <div class="text-H7 text-gray-500 hover:text-slate-200">PHOTOGRAPER</div>
-          <div class="text-H7 text-gray-500 hover:text-slate-200">ILLUSTRATION</div>
-        </div>
-      </div>
+    <div class="w-1/3 text-lime-700 flex flex-row justify-end text-H10 font-medium">WEB PORTFOLIO 2025</div>
+  </div>
+
+  <!-- Dòng I'M NHI với hai hình tròn xoay -->
+  <div class="relative flex items-center justify-center gap-10 animate__animated animate__fadeInUp animate__delay-2s">
+    <!-- Hình tròn trái -->
+    <div class="w-[50px] h-[50px] border-4 border-red-500 rounded-full flex items-center justify-center animate-spin-slow">
+      <!-- Ngôi sao nhỏ -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"
+        class="w-8 h-8 text-yellow-400 ">
+        <path
+          d="M10 1.5l2.39 5.09 5.61.41-4.25 3.84 1.25 5.56L10 13.77 5.0 16.4l1.25-5.56L2 7l5.61-.41L10 1.5z" />
+      </svg>
     </div>
+
+    <!-- Chữ I'M NHI -->
+    <div class="text-[140px] text-lime-600 font-bold -z-50">I’M NHI</div>
+
+    <!-- Hình tròn phải -->
+    <div class="w-[50px] h-[50px] border-4 border-red-500 rounded-full flex items-center justify-center animate-spin-slow">
+      <!-- Ngôi sao nhỏ -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"
+        class="w-8 h-8 text-yellow-400">
+        <path
+          d="M10 1.5l2.39 5.09 5.61.41-4.25 3.84 1.25 5.56L10 13.77 5.0 16.4l1.25-5.56L2 7l5.61-.41L10 1.5z" />
+      </svg>
     </div>
   </div>
+
+  <!-- Dòng dưới -->
+  <div class="absolute text-DisplayXL text-lime-600 font-bold animate__animated animate__fadeInUp animate__delay-2s -z-10 p-60">
+    DESIGNER FROM VIET NAM
+  </div>
+
+  <!-- Phần dưới cùng -->
+  <div class="container mx-auto flex flex-row justify-between items-end">
+    <div class="flex flex-col items-start gap-4 animate__animated animate__fadeInUp animate__delay-3s">
+      <div class="text-H7 text-gray-300 font-medium">What I Do</div>
+      <div class="flex flex-col gap-1">
+        <div class="text-H9 text-gray-500 hover:text-slate-200">UIUX DESIGNER</div>
+        <div class="text-H9 text-gray-500 hover:text-slate-200">GRAPHIC DESIGNER</div>
+        <div class="text-H9 text-gray-500 hover:text-slate-200">PHOTOGRAPHER</div>
+        <div class="text-H9 text-gray-500 hover:text-slate-200">ILLUSTRATION</div>
+      </div>
+    </div>
+
+    <!-- Scroll -->
+    <div class="animate-pulse flex flex-col items-center justify-end mt-4">
+      <div class="text-H8 text-blue-200 hover:text-gray-400">Scroll to explore</div>
+      <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M34.2101 23.6836L24.9996 31.5783L15.7891 23.6836" stroke="#F5FFFA" stroke-width="1.97368"
+          stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M34.2101 18.4219L24.9996 26.3166L15.7891 18.4219" stroke="#F5FFFA" stroke-width="1.97368"
+          stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+
+    <div class="flex flex-col items-end gap-4 animate__animated animate__fadeInUp animate__delay-3s">
+      <div class="text-H7 text-gray-300 font-medium">Expertise</div>
+      <div class="flex flex-col items-end gap-1">
+        <div class="text-H9 text-gray-500 hover:text-slate-200">WEB DESIGN</div>
+        <div class="text-H9 text-gray-500 hover:text-slate-200">APP DESIGN</div>
+        <div class="text-H9 text-gray-500 hover:text-slate-200">PHOTOGRAPHER</div>
+        <div class="text-H9 text-gray-500 hover:text-slate-200">ILLUSTRATION</div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
   <div class="container mx-auto animate__animated animate__fadeInUp animate__delay-3s flex flex-col items-center gap-5 px-10 py-10 bg-cover bg-center relative"style="background-image: url('images/blue squres.jpg'); ">
     
     <div class="w-3/4 flex flex-col items-center justify-center gap-4 py-5">
-      <div class="flex flex-row justify-start text-H1 text-gray-500 font-bold"><span class="text-white">QUYNH NHI</span>_______</div>
-      <div class="flex flex-row justify-end text-h1 text-gray-500 font-bold">______<span class="text-white">I Am Working</span></div>
+      <div class="flex flex-row justify-start text-H1 text-gray-500 font-bold"><span class="text-gray-200">QUYNH NHI</span>_______</div>
+      <div class="flex flex-row justify-end text-h1 text-gray-500 font-bold">______<span class="text-gray-200">I Am Working</span></div>
     </div>
     <div class="flex flex-col items-center gap-5">
-      <div class="w-1/2 flex-wrap text-H5 text-gray-200">* Hi, I’m a designer transitioning from a background in <b>Graphic Design into UI/UX and Product Thinking.</b></div>
-      <div class="w-1/2 flex-wrap text-H5 text-gray-200">* I’m drawn to <b>minimal, human-centered</b> experiences that blend function with feeling.</div>
-      <div class="w-1/2 flex-wrap text-H5 text-gray-200">* Beyond digital design, I also explore <b>photography, illustration, and crafting stories</b> through simple, heartfelt visuals with Vietnamese soul.</div>
+      <div class="w-1/2 flex-wrap text-H6 text-gray-300 hover:scale-110 hover:text-lime-200">* Hi, I’m a designer transitioning from a background in <b>Graphic Design into UI/UX and Product Thinking.</b></div>
+      <div class="w-1/2 flex-wrap text-H6 text-gray-300 hover:scale-110 hover:text-lime-200">* I’m drawn to <b>minimal, human-centered</b> experiences that blend function with feeling.</div>
+      <div class="w-1/2 flex-wrap text-H6 text-gray-300 hover:scale-110 hover:text-lime-200">* Beyond digital design, I also explore <b>photography, illustration, and crafting stories</b> through simple, heartfelt visuals with Vietnamese soul.</div>
     </div>
     <a href="ABOUT.html" >
       <div class="flex flex-row justify-center mt-4">
@@ -182,116 +282,48 @@
     </div>
     </a>
   </div>
-  <div class="container mx-auto flex flex-col gap-10 p-20 mt-10 mb-10 bg-cover bg-center relative"style="background-image: url('images/blue blink.jpg'); ">
-    <div class="container mx-auto bg-black/50 rounded-lg flex flex-col items-center p-10">
-      <div class="w-3/4 flex flex-col gap-4 items-center justify-center py-5">
-      <div class="flex flex-row gap-4">
-        <div class="flex flex-col gap-4">
-          <div class="text-H3 text-gray-200 font-semibold">Bizzi — Your Smart Selling Companion.</div>
-          <div class="w-4/5 text-H7 text-gray-400 hover:text-gray-200">A comprehensive web platform designed to help business owners and sales teams manage their operations with ease.. I crafted a distinctive brand identity - logo, visual language, and tone -reflecting simplicity, authenticity, and environmental care.</div>
-        </div>
-        <a href="BIZZI PROJECT.html" class="w-2/3 flex flex-row justify-end items-center gap-4" >
-          <button class="inline-flex text-H7 bg-blue-800 text-gray-300 
-         items-center justify-center 
-         rounded-md
-         border-2 border-transparent
-         hover:bg-transparent 
-         hover:text-blue-300 
-         hover:border-blue-800 
-         transition-all duration-300 px-4 py-2">VIEW PROJECTS</button>
-        </a>
-      </div>
-      <div class="flex flex-row gap-5 mt-5">
-        <div class="w-1/2 h-[300px] hover:animate-pulse">
-          <img src="images/7.png" alt="" class="rounded-lg size-full object-cover">
-        </div>
-        <div class="w-1/2 h-[300px] flex flex-col gap-5">
-          <img src="images/8.png" alt="" class="rounded-lg size-full object-cover hover:animate-pulse">
-          <img src="images/9.png" alt="" class="rounded-lg size-full object-cover hover:animate-pulse">
-        </div>
-      </div>
-      <div class="container mx-auto flex flex-row justify-between items-center">
-        <div class="text-H7 text-white opacity-50">Featured word 1</div>
-        <div class="text-H7 text-white opacity-50">UI/UX</div>
+  <section class="relative w-full min-h-screen overflow-hidden bg-cover bg-center"
+         style="background-image: url('images/blue blink.jpg');">
+  <div class="scroll-stack container mx-auto flex flex-col gap-10 p-10 mt-10">
+    
+    <!-- CARD 1 -->
+    <div class="stack-card bg-black/50 rounded-xl p-10 flex flex-col items-center gap-5">
+      <div class="text-H3 text-gray-200 font-semibold">Bizzi — Your Smart Selling Companion.</div>
+      <p class="text-H7 text-gray-400 hover:text-gray-200 w-3/4 text-center">
+        A comprehensive web platform designed to help business owners and sales teams manage operations with ease.
+      </p>
+      <div class="flex gap-4 mt-3">
+        <img src="images/7.png" class="rounded-lg w-64 h-40 object-cover hover:animate-pulse">
+        <img src="images/8.png" class="rounded-lg w-64 h-40 object-cover hover:animate-pulse">
       </div>
     </div>
-    </div>
-    <div class="container mx-auto bg-black/50 rounded-lg flex flex-col items-center p-10">
-    <div class="w-3/4 flex flex-col gap-4 items-center justify-center py-5">
-      <div class="flex flex-row gap-4">
-        <div class="flex flex-col gap-4">
-          <div class="text-H3 text-gray-200 font-semibold">Lapeen-Giving Clothes a Second Life</div>
-          <div class="w-2/3text-h7 text-gray-400 hover:text-gray-200 ">A sustainable fashion brand promoting conscious living through curated second-hand collections. I crafted a distinctive brand identity - logo, visual language, and tone -reflecting simplicity, authenticity, and environmental care.</div>
-        </div>
-        <a href="LAPEEN PROJECT.html" class="w-2/3 flex flex-row justify-end items-center gap-4" >
-          <button class="inline-flex text-H7 bg-blue-800 text-gray-300 
-         items-center justify-center 
-         rounded-md
-         border-2 border-transparent
-         hover:bg-transparent 
-         hover:text-blue-300 
-         hover:border-blue-800 
-         transition-all duration-300 px-4 py-2">VIEW PROJECTS</button>
-        </a>
-      </div>
-      <div class="flex flex-row gap-5 mt-5">
-        <div class="w-1/2 h-[300px] hover:animate-pulse">
-          <img src="images/1.png" alt="" class="rounded-lg size-full object-cover">
-        </div>
-        <div class="w-1/2 h-[300px] flex flex-col gap-5">
-          <img src="images/2.png" alt="" class="rounded-lg size-full object-cover hover:animate-pulse">
-          <img src="images/3.png" alt="" class="rounded-lg size-full object-cover hover:animate-pulse">
-        </div>
-      </div>
-      <div class="container mx-auto flex flex-row justify-between items-center">
-        <div class="text-H7 text-white opacity-50">Featured word 1</div>
-        <div class="text-H7 text-white opacity-50">UI/UX</div>
+
+    <!-- CARD 2 -->
+    <div class="stack-card bg-black/50 rounded-xl p-10 flex flex-col items-center gap-5">
+      <div class="text-H3 text-gray-200 font-semibold">Lapeen — Giving Clothes a Second Life</div>
+      <p class="text-H7 text-gray-400 hover:text-gray-200 w-3/4 text-center">
+        A sustainable fashion brand promoting conscious living through curated second-hand collections.
+      </p>
+      <div class="flex gap-4 mt-3">
+        <img src="images/1.png" class="rounded-lg w-64 h-40 object-cover hover:animate-pulse">
+        <img src="images/2.png" class="rounded-lg w-64 h-40 object-cover hover:animate-pulse">
       </div>
     </div>
+
+    <!-- CARD 3 -->
+    <div class="stack-card bg-black/50 rounded-xl p-10 flex flex-col items-center gap-5">
+      <div class="text-H3 text-gray-200 font-semibold">Flavors of Hue — A Visual Journey</div>
+      <p class="text-H7 text-gray-400 hover:text-gray-200 w-3/4 text-center">
+        A photography project capturing the authentic beauty of Hue’s traditional dishes.
+      </p>
+      <div class="flex gap-4 mt-3">
+        <img src="images/4.png" class="rounded-lg w-64 h-40 object-cover hover:animate-pulse">
+        <img src="images/5.png" class="rounded-lg w-64 h-40 object-cover hover:animate-pulse">
+      </div>
     </div>
-    <div class="container mx-auto bg-black/50 rounded-lg flex flex-col items-center p-10">
-    <div class="w-3/4 flex flex-col gap-4 items-center justify-center py-5">
-      <div class="flex flex-row gap-4">
-        <div class="flex flex-col gap-4">
-          <div class="text-H3 text-gray-200 font-semibold">Flavors of Hue - A Visual Journey</div>
-          <div class="w-2/3text-h7 text-gray-400 hover:text-gray-200">A photography project capturing the authentic beauty of Hue’s traditional dishes and the warmth of its people. Through simple frames, I highlight the richness of local flavors and cultural essence.</div>
-        </div>
-        <a href="PROJECTDETAIL2.html" class="w-2/3 flex flex-row justify-end items-center gap-4" >
-          <button class="inline-flex text-H7 bg-blue-800 text-gray-300
-         items-center justify-center 
-         rounded-md
-         border-2 border-transparent
-         hover:bg-transparent 
-         hover:text-blue-300 
-         hover:border-blue-800 
-         transition-all duration-300 px-4 py-2">VIEW PROJECTS</button>
-        </a>
-      </div>
-      <div class="flex flex-row gap-10 mt-5">
-        <div class="w-1/2 h-[300px] hover:animate-pulse">
-          <img src="images/4.png" alt="" class="rounded-lg size-full object-cover">
-        </div>
-        <div class="w-1/2 h-[300px] flex flex-col gap-10">
-          <img src="images/5.png" alt="" class="rounded-lg size-full object-cover hover:animate-pulse">
-          <img src="images/6.png" alt="" class="rounded-lg size-full object-cover hover:animate-pulse">
-        </div>
-      </div>
-      <div class="container mx-auto flex flex-row justify-between items-center">
-        <div class="text-H7 text-white opacity-50">Featured word 1</div>
-        <div class="text-H7 text-white opacity-50">UI/UX</div>
-      </div>
-      <a href="WORK.html" class="container mx-auto flex flex-row justify-center mt-4" >
-          <button class="inline-flex w-full h-6 bg-blue-600 text-white 
-         items-center justify-center 
-         rounded-md
-         border-2 border-transparent
-         hover:bg-transparent 
-         hover:text-blue-600 
-         hover:border-blue-600 
-         transition-all duration-300 p-6">SEE ALL WORK</button>
-        </a>
-    </div>
+
   </div>
+</section>
   </div>
   
   </div>
@@ -436,7 +468,7 @@
            <div class="text-H1 font-bold text-gray-200">CONTACT</div>
          </div>
        </div>
-       <div class="w-full flex flex-row justify-center gap-40 p-5">
+       <div class="w-full flex flex-row justify-center gap-40 p-10">
         <div class="flex flex-row gap-4">
             <div>
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -480,17 +512,17 @@
        </div>
        <div class="marquee-container bg-black text-white -my-5">
   <div class="marquee-track">
-    <span class="px-4 text-H1 text-green-950 font-bold"> PHAM THI QUYNH NHI -</span>
-    <span class="px-4 text-H1 text-green-950 font-bold"> PHAM THI QUYNH NHI -</span>
-    <span class="px-4 text-H1 text-green-950 font-bold"> PHAM THI QUYNH NHI -</span>
-    <span class="px-4 text-H1 text-green-950 font-bold"> PHAM THI QUYNH NHI -</span>
+    <span class="px-4 text-H1 text-lime-800 font-bold"> PHAM THI QUYNH NHI -</span>
+    <span class="px-4 text-H1 text-lime-800 font-bold"> PHAM THI QUYNH NHI -</span>
+    <span class="px-4 text-H1 text-lime-800 font-bold"> PHAM THI QUYNH NHI -</span>
+    <span class="px-4 text-H1 text-lime-800 font-bold"> PHAM THI QUYNH NHI -</span>
     
   </div>
 </div>
        
-       <div class="flex flex-row justify-between mb-10 px-5">
-        <div class="text-H7 text-gray-500 font-medium">VIET NAM 2025</div>
-        <div class="text-H7 text-gray-500 font-medium">WEB BY NHI PHAM</div>
+       <div class="flex flex-row justify-between mb-10 px-2">
+        <div class="text-H10 text-gray-500 font-medium">VIET NAM 2025</div>
+        <div class="text-H10 text-gray-500 font-medium">WEB BY NHI PHAM</div>
        </div>
        <style>
 @keyframes marquee {
